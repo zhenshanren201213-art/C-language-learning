@@ -1,36 +1,72 @@
-////æ‰“å°100åˆ°200ä¹‹é—´çš„ç´ æ•°
-//#include<stdio.h>
-//int main()
-//{
-//	for (int i = 101;i <= 200;i += 2)
-//	{
-//		int flag = 1;
-//		for (int j = 3;j * j <= i;j += 2)
-//		{
-//			if (i % j == 0)
-//			{
-//				flag = 0;
-//				break;
-//			}
-//		}
-//		if (flag == 1)
-//			printf("%d\n", i);
-//	}
-//	return 0;
-//}
-
-
-
-//ç”Ÿæˆ1åˆ°100çš„éšæœºæ•°å¹¶æ‰“å°
+//Ëæ»úÊıÓÎÏ·½ø½×,²ÂÊı×ÖÓÎÏ·1µ½100
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
-int main()
+
+void menu()//²Ëµ¥
 {
-	int num = 0;
-	srand((unsigned int)time(NULL));
-	num = rand() % 100 + 1;
-	printf("%d\n",num);
-	return 0;
+
+	printf("******ÓÎÏ·²Ëµ¥******");
+	printf("*****1.¿ªÊ¼ÓÎÏ·*****");
+	printf("*****0.ÍË³öÓÎÏ·*****");
 }
 
+
+void game()//ÓÎÏ·Ö÷Ìå´úÂë
+{
+	
+	int num = rand() % 100 + 1;
+	int guess = 0;
+	int count = 8;
+	while (count > 0)
+	{
+		printf("ÇëÊäÈë²ÂµÄÊı×Ö\n");
+		scanf_s("%d", &guess);//%dºóÃæ²»ÄÜÓĞ¿Õ¸ñ
+		if (guess > num)
+		{
+			printf("ºÜÒÅº¶²Â´óÁË");
+		}
+		else if (guess < num)
+		{
+			printf("ºÜÒÅº¶²ÂĞ¡ÁË");
+		}
+		else
+		{
+			printf("¹§Ï²Äã²Â¶ÔÁËÊı×ÖÊÇ % d\n", num);
+			break;
+		}
+		count--;
+		printf("Äã»¹ÓĞ %d ´Î»ú»á\n", count);
+		
+	}
+	if (count == 0)
+	{
+		printf("´ÎÊıÓÃ¹âÓÎÏ·Ê§°Ü");
+		printf("ÕıÈ·´ğ°¸ÊÇ %d\n", num);
+	}
+}
+
+int main()
+{
+	srand((unsigned int)time(NULL));//×îºÃĞ´ÔÚmainº¯ÊıÀï
+	int input = 0;
+	do 
+	{
+		menu();
+		printf("ÇëÊäÈë\n");
+		scanf_s("%d", &input);
+		switch (input)
+		{
+		case 1:
+			game();
+			break;
+		case 0:
+			printf("ÍË³öÓÎÏ·\n");
+			break;
+		default:
+			printf("ÊäÈë´íÎóÇëÖØĞÂÊäÈë\n");
+			break;
+		}
+	} while (input!=0);
+	return 0;
+}
